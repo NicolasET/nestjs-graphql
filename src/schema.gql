@@ -2,6 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
 type Query {
   hellowWorld: String!
+  randomNumber: Float!
+  numberBetweenTwoNumbers(to: Int): Int!
+  findAll: [Todo!]!
+  findOne(id: Int!): Todo!
+}
+
+type Mutation {
+  create(createTodoInput: CreateTodoInput!): Todo!
+  update(updateTodoInput: UpdateTodoInput!): Todo!
+  remove(id: Int!): Todo!
+}
+
+input CreateTodoInput {
+  """What needs to be done"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  """What needs to be done"""
+  description: String
+  done: Boolean
+  id: Int!
 }
