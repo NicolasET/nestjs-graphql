@@ -8,18 +8,38 @@ type Todo {
   done: Boolean!
 }
 
+type AggregationType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   hellowWorld: String!
   randomNumber: Float!
   numberBetweenTwoNumbers(to: Int): Int!
-  findAll: [Todo!]!
+  findAll(status: Boolean): [Todo!]!
   findOne(id: Int!): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  uncompletedTodos: Int!
+  aggregations: AggregationType!
+  users: [User!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
   create(createTodoInput: CreateTodoInput!): Todo!
   update(updateTodoInput: UpdateTodoInput!): Todo!
   remove(id: Int!): Todo!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreateTodoInput {
@@ -31,5 +51,16 @@ input UpdateTodoInput {
   """What needs to be done"""
   description: String
   done: Boolean
+  id: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }
